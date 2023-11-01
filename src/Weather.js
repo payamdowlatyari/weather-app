@@ -1,40 +1,33 @@
-
 import React from 'react';
-class Weather extends React.Component{
-    render(){
+import Col from 'react-bootstrap/Col';
+import Row from 'react-bootstrap/esm/Row';
+
+const Weather =  (props) => {
         return(
-            <div className="weather-info">
-                {
-                    this.props.country && this.props.city && <p className="weather__key">Location: 
-                        <span className="weather__value">  {this.props.city}, {this.props.country}</span>                    
-                    </p> 
-                }
-                
-                {
-                    this.props.temperature && <p className="weather__key">Temperature: 
-                        <span className="weather__value">  {this.props.temperature}</span>
-                    </p>
-                }
+            <Row className='weather__info'>
+                <Col className='weather-p'>
+                {props.country && props.city && <p> Location: 
+                          <span className='weather-t'>{props.city}, {props.country}</span></p>}
+                </Col>  
+                <Col className='weather-p'>
+                {props.temperature && <p>Temperature: 
+                          <span className='weather-t'>{props.temperature}</span></p>}
+                </Col>  
+                <Col className='weather-p'>
+                {props.humidity && <p>Humidity: 
+                          <span className='weather-t'>{props.humidity}</span></p>}
+                </Col>  
+                <Col className='weather-p'>
 
-                {
-                    this.props.humidity && <p className="weather__key">Humidity: 
-                        <span className="weather__value">  {this.props.humidity}</span>
-                    </p>
-                }
-
-                {
-                    this.props.description && <p className="weather__key">Conditions:  
-                        <span className="weather__value">  {this.props.description}</span>
-                    </p>
-                }
-
-                {
-                    this.props.error && <p className="weather__error">{this.props.error}</p>
-                }
-        
-            </div>
+                {props.description && 
+                <p>Conditions:  <span className='weather-t'>{props.description}</span></p>}
+                </Col>  
+                <Col className='weather-error'>
+                {props.error && <p>{props.error}</p>}
+                </Col>  
+        </Row>
         )
-    }
 }
+
 
 export default Weather;

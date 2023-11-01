@@ -6,8 +6,19 @@ body {
   font-family: "Open Sans", serif;
 }
 
+form {
+  align-content: center;
+  padding-top: 2em;
+  padding-bottom: 2em;
+}
+
+input {
+  border-radius: 5px;
+  display: block;
+  min-width: 200px;
+}
+
 .wrapper {
-  background: linear-gradient(to right, #70bef4, #066ab0);
   height: 100vh;
   display: flex;
   justify-content: center;
@@ -15,16 +26,17 @@ body {
 }
 
 .main {
-  height: 90vh;
+  height: 100vh;
   background: #fff;
-  box-shadow: 0px 13px 40px -13px rgba(0,0,0,0.75);
-  width: 80%;
+  padding-left: 1em;
+  padding-right: 1em;
   margin: 0 auto;
 }
 
 .title-container {
   height: 90vh;
-  background: url("bg.jpg") center center no-repeat;
+  margin: 2em;
+  /* background: url("bg.jpg") center center no-repeat; */
   background-size: cover;
   display: flex;
   align-items: center;
@@ -37,20 +49,20 @@ body {
   font-size: 50px;
   letter-spacing: 2px;
   line-height: 1.3;
-  font-family: 'Roboto Slab', serif;
+  text-transform: uppercase;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }
 
 .title-container__subtitle {
-  font-style: italic;
-  font-size: 25px;
+  font-size: 20px;
   font-weight: 100;
   letter-spacing: 1px;
   line-height: 1.5;
-  font-family: "Merriweather", serif;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }
 
 .form-container {
-  background-color: #0a2333; 
+  background-color: #aaa;
   height: 90vh;
   padding-top: 100px;
   padding-left: 50px;
@@ -59,53 +71,47 @@ body {
 input[type="text"] {
   background-color: transparent;
   border: 0;
-  border-bottom: solid 1px #f16051;
+  border: solid 1px #aaa;
   width: 30%;
-  padding-bottom: 4px;
-  color: #fff !important;
+  padding: 5px;
   font-weight: lighter;
   letter-spacing: 2px;
-  margin-bottom: 30px;
+  margin-bottom: 20px;
   margin-right: 20px;
-  font-size: 20px;
+  font-size: 15px;
 }
 
 input[type="text"] { 
     outline: none;
 }
 
-input:-webkit-autofill {
-    -webkit-box-shadow: 0 0 0 30px #2c3e50 inset;
-    -webkit-text-fill-color: #fff !important;
-}
-
 button {
   border: 0;
   padding: 8px 20px;
-  margin: 0 2px;
-  border-radius: 2px;
+  margin: 1em;
+  margin-bottom: 20px;
+  border-radius: 5px;
   font-weight: lighter;
   letter-spacing: 1px;
   font-size: 15px;
   cursor: pointer;
-  background-color: #49aee9;
-  color: #fff;
-  font-weight: 100;
 }
+
+button:hover {
+  opacity: 0.9;
+} 
 
 button:active {
   outline: none;
 }
 
 .weather__info {
-  width: 60%;
-  font-size: 20px;
-  font-weight: 200;
-  letter-spacing: 2px;
+  padding: 1em;
+  margin: 0 auto;
 }
 
 .weather__key {
-  color: #f16051;
+  color: #111;
   border-bottom: solid 2px rgba(255,255,255,0.06);
   padding: 20px 0 20px 0;
   font-weight: 400;
@@ -116,13 +122,30 @@ button:active {
 }
 
 .weather__value {
-  color: #fff;
+  color: #111;
   font-weight: 200;
 }
 
 .weather__error {
-  color: #fff;
+  color: #111;
   font-size: 20px;
   letter-spacing: 1px;
   font-weight: 200;
+}
+
+.weather-p {
+  margin: 0.5em;
+  font-size: 1em;
+  font-weight: 900;
+  color: #333;
+}
+
+.weather-t {
+  padding-left: 1em;
+  font-weight: 500;
+  color: #009999;
+}
+
+.weather-error {
+  color: crimson;
 }
