@@ -7,7 +7,7 @@ import Row from 'react-bootstrap/Row';
 import Titles from './Titles';
 import Form from './Form';
 import Container from 'react-bootstrap/esm/Container';
-const Api_Key = 'e84aa460c857811e8ae17eed3a1293e0';
+const Api_Key = process.env.API_KEY;
 
 class HomePage extends React.Component {
 
