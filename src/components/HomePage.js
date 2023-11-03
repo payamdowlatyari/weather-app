@@ -5,28 +5,30 @@ import Tabs from 'react-bootstrap/Tabs';
 import Weather from './Weather';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
-import Card from 'react-bootstrap/Card';
 import Titles from './Titles';
 import Form from './Form';
 import Container from 'react-bootstrap/esm/Container';
 import Button from 'react-bootstrap/esm/Button';
+import News from './News';
 import * as api from '../api/index.js';
 
 const HomePage = () => {
   const [isLoading, setLoading] = useState(false);
   const [weatherData, setWeatherData] = useState({
         temperature: undefined,
+        minimum: undefined,
+        maximum: undefined,
         city: undefined,
         country: undefined,
         humidity: undefined,
         description: undefined,
+        icon: undefined,
         error: undefined
   })
 
   const [newsData, setNewsData] = useState({
     news: []
   })
-
 
   useEffect(() => {
     function simulateNetworkRequest() {
@@ -64,14 +66,17 @@ const HomePage = () => {
         if(city && country){
           setWeatherData({
             ...weatherData,
-          temperature: response.main.temp,
-          city: response.name,
-          country: response.sys.country,
-          humidity: response.main.humidity,
-          description: response.weather[0].description,
-          error: ""
+            temperature: response.main.temp,
+            minimum: response.main.temp_min,
+            maximum: response.main.temp_max,
+            city: response.name,
+            country: response.sys.country,
+            humidity: response.main.humidity,
+            description: response.weather[0].description,
+            icon: response.weather[0].icon,
+            error: ""
         })
-  }
+    }
 
     else {
       setWeatherData({
@@ -97,22 +102,20 @@ const HomePage = () => {
         ...newsData, 
         news: response.articles
       })
-    } catch (error) {
-      console.error(error);
-    }
-}
+      } catch (error) {
+        console.error(error);
+      }
+  }
 
   return ( 
       <Tabs
       defaultActiveKey="weather"
       transition={false}
       id="noanim-tab-example"
-      style={{marginBottom: '1em'}}
-      >
+      style={{marginBottom: '1em'}}>
         <Tab 
         eventKey="weather" 
-        title="Weather"
-        >
+        title="Weather">
           <Container>
         <Row>
         <Titles />
@@ -121,13 +124,7 @@ const HomePage = () => {
         <Form loadWeather={getWeather} />
      </Col>
      <Col md={5}>
-     <Weather 
-        temperature={weatherData.temperature}
-        city={weatherData.city}
-        country={weatherData.country}
-        humidity={weatherData.humidity}
-        description={weatherData.description}
-        error={weatherData.error}/>
+     <Weather weatherData={weatherData}/>
       </Col>
      </Row>
      </Row>
@@ -139,30 +136,12 @@ const HomePage = () => {
             <Button
               variant="light"
               disabled={isLoading}
-              onClick={!isLoading ? getNews : null}
-            >
+              onClick={!isLoading ? getNews : null}>
               {isLoading ? 'Loading…' : 'Click to load the latest news'}
             </Button>
          </Row>
          <Row xs={1} md={2} className="g-4 mb-3">
-            {newsData.news.map((item) => (
-              <Col key={item} style={{display: 'inline-block', margin: '1em'}}>
-              <Card style={{ width: '18rem', margin: '1em' }}>
-              <Card.Img variant="top" src={item.urlToImage} style={{ width: '150px'}}/>
-              <Card.Body>
-              <Card.Link href={item.url}>
-                <Card.Title style={{overflow: 'hidden'}}>{item.title.slice(0,30)} ...</Card.Title>
-                </Card.Link>
-                <Card.Text style={{overflow: 'hidden'}}>
-                  {item.description.slice(0,100)} ...
-                </Card.Text>
-              </Card.Body>   
-              <Card.Footer>
-                <small className="text-muted">{item.source.name} </small>
-            </Card.Footer>
-              </Card>
-              </Col>
-            ))}
+          <News newsData={newsData}/>
          </Row>
         </Container>
         </Tab>

@@ -2,32 +2,35 @@ import React from 'react';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/esm/Row';
 
-const Weather =  (props) => {
+const Weather =  ({weatherData}) => {
+        const {country, city, temperature, minimum, maximum, humidity, description, icon, error} = weatherData;
         return(
             <Row className='weather__info'>
                 <Col className='weather-p'>
-                {props.country && props.city && <p> Location: 
-                          <span className='weather-t'>{props.city}, {props.country}</span></p>}
+                {temperature && 
+                          <h1 className='weather-t'>{(temperature / 10).toFixed(2)} ℃</h1>}
                 </Col>  
                 <Col className='weather-p'>
-                {props.temperature && <p>Temperature: 
-                          <span className='weather-t'>{props.temperature}</span></p>}
-                </Col>  
+                {description && icon && 
+                <h2><img src={`http://openweathermap.org/img/wn/${icon}.png`} alt="img"/>
+               <span className='weather-t'>{description}</span></h2> }
+                </Col>   
                 <Col className='weather-p'>
-                {props.humidity && <p>Humidity: 
-                          <span className='weather-t'>{props.humidity}</span></p>}
-                </Col>  
+                {minimum && maximum && humidity && <p>
+                      <span>{(minimum / 10).toFixed(2)} ℃</span>
+                      <span>{(maximum / 10).toFixed(2)} ℃</span>
+                      <span>H {humidity}%</span>
+                </p>}
+                </Col>    
                 <Col className='weather-p'>
-
-                {props.description && 
-                <p>Conditions:  <span className='weather-t'>{props.description}</span></p>}
-                </Col>  
+                {country && city && 
+                          <p className='weather-p'>{city}, {country}</p>}
+                </Col> 
                 <Col className='weather-error'>
-                {props.error && <p>{props.error}</p>}
+                {error && <span>{error}</span>}
                 </Col>  
         </Row>
         )
 }
-
 
 export default Weather;
