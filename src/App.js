@@ -1,5 +1,5 @@
 import React from 'react';
-import HomePage from './HomePage';
+import HomePage from './components/HomePage';
 import './App.css';
 
   class App extends React.Component {
