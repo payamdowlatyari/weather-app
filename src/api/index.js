@@ -1,4 +1,4 @@
-const weather_url = 'http://api.openweathermap.org/data/2.5';
+const weather_url = 'https://api.openweathermap.org/data/2.5';
 const Weather_Api_Key = process.env.REACT_APP_WEATHER_API_KEY;
 
 const news_url = 'https://newsapi.org/v2';
